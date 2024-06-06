@@ -2,6 +2,7 @@
 
 ![Packagist Version](https://img.shields.io/packagist/v/jacobfitzp/nova-tinymce)
 ![Packagist Downloads](https://img.shields.io/packagist/dm/jacobfitzp/nova-tinymce)
+![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/jacobfitzp/nova-tinymce/phpcsfixer.yml?branch=main&label=code%20style&style=flat-square)
 
 Out of the box support for image uploads, and highly configurable to suit any use case.
 
