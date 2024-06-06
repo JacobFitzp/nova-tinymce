@@ -10,13 +10,14 @@ composer require jacobfitzp/nova-tinymce
 
 ## Usage
 
-Before you can start using the TinyMCE field you need to set your API key, the easiest way to do this is by setting `TINYMCE_API_KEY` in your apps `.env`. Alternatively you can publish the configuration file and set it there.
+Before you can start using the TinyMCE field you need to set your API key, the easiest way to do this is by setting `TINYMCE_API_KEY` in your apps `.env`, alternatively you can publish the configuration file and set it there.
 
 Now you can simply use the `Tinymce` field in your Nova resource:
 
 ```php
 Tinymce::make('Content')
-    ->fullWidth(),
+    ->fullWidth()
+    ->help('Content to display on the page'),
 ```
 
 ## Configuration
