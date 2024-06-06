@@ -613,7 +613,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           automatic_uploads: true,
           image_uploadtab: true,
           images_upload_credentials: true,
-          images_upload_url: '/nova-vendor/jacobfitzp/nova-tinymce/images'
+          images_upload_url: $props.field.endpoint
         }),
         modelValue: _ctx.value,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {

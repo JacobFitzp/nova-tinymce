@@ -17,7 +17,7 @@
                     automatic_uploads: true,
                     image_uploadtab: true,
                     images_upload_credentials: true,
-                    images_upload_url: '/nova-vendor/jacobfitzp/nova-tinymce/images'
+                    images_upload_url: field.endpoint
                 }"
                 v-model="value"
             />

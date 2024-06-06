@@ -21,6 +21,7 @@ class Tinymce extends Field
             'api_key' => config('nova-tinymce.api_key'),
             'plugins' => config('nova-tinymce.plugins'),
             'init' => config('nova-tinymce.init'),
+            'endpoint' => config('nova-tinymce.storage_endpoint'),
         ]);
     }
 

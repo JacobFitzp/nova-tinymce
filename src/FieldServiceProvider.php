@@ -2,10 +2,10 @@
 
 namespace Jacobfitzp\NovaTinymce;
 
+use Laravel\Nova\Nova;
+use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Events\ServingNova;
-use Laravel\Nova\Nova;
 
 class FieldServiceProvider extends ServiceProvider
 {
@@ -36,13 +36,15 @@ class FieldServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/nova-tinymce.php', 'nova-tinymce'
+            __DIR__ . '/../config/nova-tinymce.php',
+            'nova-tinymce'
         );
     }
 
     public function routes(): void
     {
         Route::prefix('nova-vendor/jacobfitzp/nova-tinymce')
+            ->middleware(['nova'])
             ->group(__DIR__ . '/../routes/api.php');
     }
 }
