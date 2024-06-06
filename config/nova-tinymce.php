@@ -7,17 +7,7 @@ return [
 
     // Plugins used by the editor.
     // See https://www.tiny.cloud/docs/tinymce/latest/plugins/ for a list of available plugins.
-    'plugins' => [
-        'accordion',
-        'autolink',
-        'lists',
-        'link',
-        'image',
-        'table',
-        'code',
-        'help',
-        'wordcount',
-    ],
+    'plugins' => ['accordion', 'autolink', 'lists', 'link', 'image', 'table', 'code', 'help', 'wordcount'],
 
     // Additional editor properties, passed to the editors `init` prop.
     'init' => [

@@ -4,7 +4,7 @@ namespace Jacobfitzp\NovaTinymce;
 
 use Laravel\Nova\Fields\Field;
 
-class NovaTinymce extends Field
+class Tinymce extends Field
 {
     /**
      * The field's component.
