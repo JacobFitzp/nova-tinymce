@@ -509,6 +509,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mixins: [laravel_nova__WEBPACK_IMPORTED_MODULE_1__.FormField, laravel_nova__WEBPACK_IMPORTED_MODULE_1__.HandlesValidationErrors],
   props: ['resourceName', 'resourceId', 'field'],
+  created: function created() {
+    this.setEditorTheme();
+  },
   methods: {
     /*
      * Set the initial, internal value for the field.
@@ -521,6 +524,32 @@ __webpack_require__.r(__webpack_exports__);
      */
     fill: function fill(formData) {
       formData.append(this.fieldAttribute, this.value || '');
+    },
+    /**
+     * Set the theme for the editor based on the Nova theme.
+     */
+    setEditorTheme: function setEditorTheme() {
+      var selectedNovaTheme = localStorage.novaTheme;
+      if (typeof selectedNovaTheme !== 'undefined') {
+        if (selectedNovaTheme === 'system') {
+          this.setSystemTheme();
+        } else if (selectedNovaTheme === 'dark') {
+          this.field.options.init.skin = 'oxide-dark';
+          this.field.options.init.content_css = 'dark';
+        } else {
+          this.field.options.init.skin = 'oxide';
+          this.field.options.init.content_css = 'default';
+        }
+      } else {
+        this.setSystemTheme();
+      }
+    },
+    /**
+     * Set the theme for the editor based on the system theme.
+     */
+    setSystemTheme: function setSystemTheme() {
+      this.field.options.init.skin = window.matchMedia('(prefers-color-scheme: dark)').matches || document.querySelector('html').classList.contains('dark') ? 'oxide-dark' : 'oxide';
+      this.field.options.init.content_css = window.matchMedia('(prefers-color-scheme: dark)').matches || document.querySelector('html').classList.contains('dark') ? 'dark' : 'default';
     }
   }
 });
@@ -564,11 +593,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_excerpt = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("excerpt");
   var _component_PanelItem = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("PanelItem");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_PanelItem, {
     index: $props.index,
     field: $props.field
-  }, null, 8 /* PROPS */, ["index", "field"]);
+  }, {
+    value: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_excerpt, {
+        content: $props.field.value,
+        "should-show": $props.field.shouldShow
+      }, null, 8 /* PROPS */, ["content", "should-show"])];
+    }),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["index", "field"]);
 }
 
 /***/ }),
@@ -604,22 +642,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     field: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Editor, {
-        "api-key": $props.field.api_key,
+        "api-key": $props.field.options.api_key,
         disabled: $props.field.readonly,
-        init: _objectSpread(_objectSpread({}, $props.field.init), {}, {
+        placeholder: $props.field.name,
+        toolbar: $props.field.options.toolbar,
+        init: _objectSpread(_objectSpread({}, $props.field.options.init), {}, {
           // List of plugins to load.
-          plugins: $props.field.plugins.join(' '),
+          plugins: $props.field.options.plugins.join(' '),
           // Image upload configuration.
           automatic_uploads: true,
           image_uploadtab: true,
           images_upload_credentials: true,
-          images_upload_url: $props.field.endpoint
+          images_upload_url: $props.field.options.storage_endpoint
         }),
         modelValue: _ctx.value,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
           return _ctx.value = $event;
         })
-      }, null, 8 /* PROPS */, ["api-key", "disabled", "init", "modelValue"])];
+      }, null, 8 /* PROPS */, ["api-key", "disabled", "placeholder", "toolbar", "init", "modelValue"])];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["field", "errors", "show-help-text", "full-width-content"]);
@@ -638,8 +678,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   render: () => (/* binding */ render)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return null;
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.field.value), 1 /* TEXT */);
 }
 
 /***/ }),

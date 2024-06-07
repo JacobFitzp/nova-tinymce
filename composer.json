@@ -27,11 +27,23 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.58"
+        "friendsofphp/php-cs-fixer": "^3.58",
+        "larastan/larastan": "^2.0",
+        "orchestra/testbench": "^9.1",
+        "laravel/nova": "^4.0"
+    },
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
     },
     "scripts": {
         "fix": [
             "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots"
+        ],
+        "analyse": [
+            "./vendor/bin/phpstan analyse --memory-limit=4G"
         ]
     }
 }

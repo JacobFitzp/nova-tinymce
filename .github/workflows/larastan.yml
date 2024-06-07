@@ -1,4 +1,4 @@
-name: PHP-CS-Fixer
+name: Larastan
 
 on:
   push:
@@ -20,5 +20,5 @@ jobs:
         run: composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
       - name: Install Dependencies
         run: composer install
-      - name: Execute PHP-CS-Fixer test
-        run: vendor/bin/php-cs-fixer fix --dry-run --using-cache=no
+      - name: Execute Larastan test
+        run: vendor/bin/phpstan analyse

@@ -1,4 +1,5 @@
 <template>
+    <span>{{ field.value }}</span>
 </template>
 
 <script>

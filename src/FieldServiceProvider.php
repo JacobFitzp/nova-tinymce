@@ -6,6 +6,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Jacobfitzp\NovaTinymce\Http\Middleware\ForceJsonResponse;
 
 class FieldServiceProvider extends ServiceProvider
 {
@@ -41,10 +42,19 @@ class FieldServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Register routes.
+     *
+     * @return void
+     */
     public function routes(): void
     {
         Route::prefix('nova-vendor/jacobfitzp/nova-tinymce')
-            ->middleware(['nova'])
+            ->middleware([
+                'nova:api',
+                // Ensure the response is JSON, a little hacky but makes debugging easier.
+                ForceJsonResponse::class,
+            ])
             ->group(__DIR__ . '/../routes/api.php');
     }
 }
