@@ -2,8 +2,8 @@
 
 namespace Jacobfitzp\NovaTinymce\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Attach image form request.
