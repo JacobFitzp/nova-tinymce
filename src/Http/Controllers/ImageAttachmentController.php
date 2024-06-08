@@ -4,6 +4,7 @@ namespace Jacobfitzp\NovaTinymce\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
+use Jacobfitzp\NovaTinymce\Events\ImageWasAttached;
 use Jacobfitzp\NovaTinymce\Http\Requests\AttachImageRequest;
 
 /**
@@ -32,6 +33,10 @@ class ImageAttachmentController extends Controller
 
         // Return the location of the uploaded file.
         if (filled($location)) {
+            // Dispatch attachment event.
+            ImageWasAttached::dispatch($location, $storageDisk);
+
+            // Respond with the location.
             return response()->json([
                 'location' => Storage::disk($storageDisk)->url($location),
             ]);

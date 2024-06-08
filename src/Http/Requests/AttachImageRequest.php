@@ -3,6 +3,7 @@
 namespace Jacobfitzp\NovaTinymce\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Attach image form request.
@@ -17,6 +18,9 @@ class AttachImageRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'disk' => [
+                Rule::in(array_keys(config('filesystems.disks'))),
+            ],
             'file' => [
                 'required',
                 'image',

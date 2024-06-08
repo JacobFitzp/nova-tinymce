@@ -19,7 +19,7 @@
                     automatic_uploads: true,
                     image_uploadtab: true,
                     images_upload_credentials: true,
-                    images_upload_url: field.options.storage_endpoint
+                    images_upload_url: field.options.storage_endpoint + endpointParams
                 }"
                 v-model="value"
             />
@@ -40,6 +40,19 @@ export default {
 
     created () {
         this.setEditorTheme()
+    },
+
+    computed: {
+        /**
+         * Query parameters to send to the upload endpoint.
+         *
+         * @returns {string}
+         */
+        endpointParams() {
+            return '?' + new URLSearchParams({
+                _token: this.field.token
+            }).toString()
+        }
     },
 
     methods: {

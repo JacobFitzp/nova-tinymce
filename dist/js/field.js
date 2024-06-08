@@ -512,6 +512,18 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.setEditorTheme();
   },
+  computed: {
+    /**
+     * Query parameters to send to the upload endpoint.
+     *
+     * @returns {string}
+     */
+    endpointParams: function endpointParams() {
+      return '?' + new URLSearchParams({
+        _token: this.field.token
+      }).toString();
+    }
+  },
   methods: {
     /*
      * Set the initial, internal value for the field.
@@ -653,7 +665,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           automatic_uploads: true,
           image_uploadtab: true,
           images_upload_credentials: true,
-          images_upload_url: $props.field.options.storage_endpoint
+          images_upload_url: $props.field.options.storage_endpoint + $options.endpointParams
         }),
         modelValue: _ctx.value,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {

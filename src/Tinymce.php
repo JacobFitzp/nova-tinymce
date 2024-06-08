@@ -29,7 +29,12 @@ class Tinymce extends Field
     {
         parent::__construct($name, $attribute, $resolveCallback);
 
-        $this->withMeta(['options' => config('nova-tinymce')]);
+        $this->withMeta([
+            'options' => config('nova-tinymce'),
+            // Need to make the CSRF token available to the component.
+            // This will allow us to use CSRF protection for the storage endpoint.
+            'token' => csrf_token(),
+        ]);
     }
 
     /**
