@@ -30,54 +30,11 @@ class Tinymce extends Field
         parent::__construct($name, $attribute, $resolveCallback);
 
         $this->withMeta([
+            // Make configuration options available to the component.
             'options' => config('nova-tinymce'),
             // Need to make the CSRF token available to the component.
             // This will allow us to use CSRF protection for the storage endpoint.
             'token' => csrf_token(),
         ]);
-    }
-
-    /**
-     * Set API key to use.
-     *
-     * @param string $key
-     * @return self
-     */
-    public function apiKey(string $key): self
-    {
-        return $this->withMeta(['api_key' => $key]);
-    }
-
-    /**
-     * Set plugins to use.
-     *
-     * @param array<string> $plugins
-     * @return self
-     */
-    public function plugins(array $plugins): self
-    {
-        return $this->withMeta(['plugins' => $plugins]);
-    }
-
-    /**
-     * Set toolbar configuration to use.
-     *
-     * @param string|null $toolbar
-     * @return self
-     */
-    public function toolbar(?string $toolbar): self
-    {
-        return $this->withMeta(['toolbar' => $toolbar]);
-    }
-
-    /**
-     * Set editor init options to use.
-     *
-     * @param array<string, mixed> $params
-     * @return self
-     */
-    public function init(array $params): self
-    {
-        return $this->withMeta(['init' => $params]);
     }
 }

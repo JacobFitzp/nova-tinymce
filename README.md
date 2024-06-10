@@ -1,4 +1,4 @@
-<img src="https://banners.beyondco.de/Nova%20TinyMCE%20Field.png?theme=light&packageManager=composer+require&packageName=jacobfitzp%2Fnova-tinymce&pattern=architect&style=style_1&description=TinyMCE+field+for+Laravel+Nova&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg">
+<img src="./images/header.png">
 
 ![Packagist Version](https://img.shields.io/packagist/v/jacobfitzp/nova-tinymce)
 ![Packagist Downloads](https://img.shields.io/packagist/dm/jacobfitzp/nova-tinymce)
